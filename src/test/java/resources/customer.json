@@ -1,0 +1,19 @@
+{
+    "firstName": "John",
+    "lastName": "doe",
+    "executiveSummary": "Below, you will find a proposal, etc. etc.",
+    "products": [
+        {
+            "name": "test product",
+            "quantity": 5,
+            "price": 10,
+            "total": 50
+        },
+        {
+            "name": "Creative Name",
+            "quantity": 10,
+            "price": 20,
+            "total": 200
+        }
+    ]
+}

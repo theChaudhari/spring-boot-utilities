@@ -16,27 +16,63 @@ public class JsonToPojoTest {
 
     @Test
     void jsonToPojo() throws IOException {
-        File jsonFile = new File("src/test/java/resources/car.json");
+        File jsonFile = new File("src/test/java/resources/customer.json");
+
         URL inputJsonUrl = jsonFile.toURI().toURL();
+
         //provide in which directory you want to create package.
-        File outputJavaClassDirectory = new File("src/main/java/com/springboot/utilities");
+        File outputJavaClassDirectory = new File("src/main/java/");
         //provide deserved packageName.
-        String packageName = "pojo";
+
+        String packageName = "com.springboot.utilities.pojo";
         //If You have embedded classes , provide deserved class name for final class orElse provided name will be final class name.
-        String javaClassName = "Car";
-        convertJsonToJavaClass(inputJsonUrl,outputJavaClassDirectory,packageName,javaClassName);
+
+        String javaClassName = "Customer";
+        convertJsonToJavaClass(inputJsonUrl, outputJavaClassDirectory, packageName, javaClassName);
 
     }
 
-    public void convertJsonToJavaClass(URL inputJsonUrl, File outputJavaClassDirectory, String packageName, String javaClassName)
-            throws IOException {
+    public void convertJsonToJavaClass(URL inputJsonUrl, File outputJavaClassDirectory, String packageName, String javaClassName) throws IOException {
         JCodeModel jcodeModel = new JCodeModel();
 
         GenerationConfig config = new DefaultGenerationConfig() {
+
+            //You can simply return true if you want one of the property..
             @Override
             public boolean isGenerateBuilders() {
-                return true;
+                return false;
             }
+
+            @Override
+            public boolean isIncludeGetters() {
+                return false;
+            }
+
+            @Override
+            public boolean isIncludeSetters() {
+                return false;
+            }
+
+            @Override
+            public boolean isIncludeAdditionalProperties() {
+                return false;
+            }
+
+            @Override
+            public boolean isIncludeToString() {
+                return false;
+            }
+
+            @Override
+            public boolean isIncludeHashcodeAndEquals() {
+                return false;
+            }
+
+            @Override
+            public boolean isIncludeGeneratedAnnotation() {
+                return false;
+            }
+
 
             @Override
             public SourceType getSourceType() {
