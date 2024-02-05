@@ -3,31 +3,32 @@ package com.springboot.utilities.jsontopojo;
 import com.sun.codemodel.JCodeModel;
 import org.jsonschema2pojo.*;
 import org.jsonschema2pojo.rules.RuleFactory;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-@ExtendWith(MockitoExtension.class)
-public class JsonToPojoTest {
+@Service
+public class JsonToPojoUtility {
 
-    @Test
+    // Just execute testcase you will get pojo classes for json payload
+
+
     void jsonToPojo() throws IOException {
-        File jsonFile = new File("src/test/java/resources/customer.json");
+        File jsonFile = new File("src/main/resources/customer.json");
 
         URL inputJsonUrl = jsonFile.toURI().toURL();
 
         //provide in which directory you want to create package.
         File outputJavaClassDirectory = new File("src/main/java/");
-        //provide deserved packageName.
 
+        //provide desire packageName.
         String packageName = "com.springboot.utilities.pojo";
-        //If You have embedded classes , provide deserved class name for final class orElse provided name will be final class name.
 
+        //If You have embedded classes , provide deserved class name for final class orElse provided name will be final class name.
         String javaClassName = "Customer";
+
         convertJsonToJavaClass(inputJsonUrl, outputJavaClassDirectory, packageName, javaClassName);
 
     }
@@ -37,7 +38,7 @@ public class JsonToPojoTest {
 
         GenerationConfig config = new DefaultGenerationConfig() {
 
-            //You can simply return true if you want one of the property..
+            //You can simply return true if you want one of the property.
             @Override
             public boolean isGenerateBuilders() {
                 return false;
@@ -85,4 +86,6 @@ public class JsonToPojoTest {
 
         jcodeModel.build(outputJavaClassDirectory);
     }
+
+
 }
